@@ -1,0 +1,622 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Writing Pro | LSC 1103</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#FDF6EE;color:#2C2C2C}
+#app{display:flex;min-height:100vh}
+#sb{width:245px;background:linear-gradient(170deg,#C8562E,#8E3018);color:#fff;position:fixed;height:100vh;overflow-y:auto;flex-shrink:0}
+#sbh{padding:15px;border-bottom:1px solid rgba(255,255,255,.2)}
+#sbh h1{font-size:.93rem;font-weight:800}#sbh p{font-size:.69rem;opacity:.78;margin-top:2px}
+.pbw{margin-top:9px;background:rgba(255,255,255,.2);border-radius:8px;height:5px}
+#pf{height:5px;border-radius:8px;background:#F0B840;width:0%;transition:width .4s}
+#pt{font-size:.69rem;opacity:.75;margin-top:3px;display:block}
+#nl{padding:7px 0}
+.nb{display:flex;align-items:center;gap:8px;width:100%;padding:9px 14px;background:none;border:none;color:#fff;text-align:left;cursor:pointer;font-size:.79rem;transition:background .2s}
+.nb:hover{background:rgba(255,255,255,.1)}.nb.act{background:rgba(255,255,255,.18);font-weight:700}.nb.dn .ni{background:#4A9660}
+.ni{width:23px;height:23px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:.71rem;font-weight:700;flex-shrink:0}
+#main{margin-left:245px;padding:25px 30px;flex:1;max-width:900px}
+.mod{display:none}.mod.active{display:block}
+.mh{margin-bottom:20px}.mh h2{font-size:1.4rem;font-weight:800;color:#C8562E}.mh p{color:#666;margin-top:4px;font-size:.87rem}
+.card{background:#fff;border-radius:14px;padding:20px;margin-bottom:15px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.card h3{font-size:.96rem;color:#C8562E;margin-bottom:11px;font-weight:700}
+.ib{border-left:4px solid #C8562E;border-radius:0 8px 8px 0;padding:11px 14px;margin:8px 0;font-size:.84rem;line-height:1.7;background:#FFF0E6}
+.ib.b{background:#EBF3FA;border-color:#4E7FAC}.ib.g{background:#E8F5EE;border-color:#4A9660}.ib.a{background:#FFF6E0;border-color:#DDA020}
+.btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:700;font-size:.85rem;transition:all .2s}
+.bp{background:#C8562E;color:#fff}.bp:hover{background:#A03820}
+.bs{background:#4E7FAC;color:#fff}.bs:hover{background:#35608A}
+.bg{background:#4A9660;color:#fff}.bg:hover{background:#326A44}
+.bo{background:transparent;border:2px solid #C8562E;color:#C8562E}.bo:hover{background:#C8562E;color:#fff}
+.opt{background:#fff;border:2px solid #DDD;border-radius:8px;padding:8px 12px;cursor:pointer;transition:all .2s;font-size:.84rem;margin-bottom:5px}
+.opt:hover{border-color:#C8562E;background:#FFF0E6}.opt.c{border-color:#4A9660;background:#E8F5EE;color:#1A5030}
+.opt.w{border-color:#B03030;background:#FDE8E8;color:#B03030}.opt.s{border-color:#C8562E;background:#FFF0E6}
+.fb{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:.82rem;font-weight:600}
+.fb.c{background:#E8F5EE;color:#1A5030}.fb.w{background:#FDE8E8;color:#B03030}
+.act{background:#FFFAF2;border:2px dashed #E8C888;border-radius:12px;padding:15px;margin:11px 0}
+.nr{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:10px}
+.tmpl{background:#EEF3F8;border-radius:10px;padding:14px;font-size:.85rem;line-height:1.85;border:1px solid #C0CFE0;font-style:italic}
+.tmpl b{background:#EBF3FA;border-bottom:2px solid #4E7FAC;padding:0 4px;border-radius:3px;font-style:normal;color:#1A4A7A}
+.irow{display:flex;align-items:flex-start;gap:10px;padding:10px;border-radius:10px;background:#FFF0E6;border-left:4px solid #C8562E;margin-bottom:6px;font-size:.85rem}
+.irow.b{background:#EBF3FA;border-color:#4E7FAC}.irow.g{background:#E8F5EE;border-color:#4A9660}.irow.a{background:#FFF6E0;border-color:#DDA020}
+.inum{font-size:.98rem;font-weight:800;color:#C8562E;min-width:24px}.inum.b{color:#4E7FAC}.inum.g{color:#4A9660}.inum.a{color:#DDA020}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:11px 0}
+.tc{border-radius:12px;padding:13px;text-align:center;border:2px solid transparent;font-size:.81rem}
+.tc.i{background:#EBF3FA;border-color:#4E7FAC}.tc.p{background:#FFF0E6;border-color:#C8562E}.tc.e{background:#E8F5EE;border-color:#4A9660}
+.tc em{font-size:1.6rem;display:block;margin-bottom:5px}.tc h4{font-size:.85rem;margin-bottom:4px;font-weight:700}
+.vword{background:#C8562E;color:#fff;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:700;text-align:center;margin-bottom:5px;transition:all .2s}
+.vword:hover{background:#A03820}.vword.s{background:#A03820}.vword.m{background:#4A9660;cursor:default}
+.vdef{border:2px solid #DDD;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:.81rem;margin-bottom:5px;background:#fff;transition:all .2s}
+.vdef:hover{border-color:#C8562E;background:#FFF0E6}.vdef.s{border-color:#C8562E;background:#FFF0E6}.vdef.m{border-color:#4A9660;background:#E8F5EE;cursor:default}
+.si{background:#fff;border:2px solid #C0CFE0;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:.82rem;line-height:1.45}
+.si.ok{border-color:#4A9660;background:#E8F5EE}.si.no{border-color:#B03030;background:#FDE8E8}
+.cli{display:flex;align-items:center;gap:7px;font-size:.81rem;padding:5px 9px;border-radius:6px;margin-bottom:4px}
+.cli.p{background:#E8F5EE;color:#1A5030}.cli.f{background:#FDE8E8;color:#B03030}.cli.n{background:#F4F4F4;color:#555}
+.tmr{font-size:1.8rem;font-weight:800;color:#C8562E;padding:8px 15px;background:#FFF0E6;border-radius:10px;letter-spacing:1px}
+.tmr.w{color:#B03030;background:#FDE8E8;animation:pl 1s infinite}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.6}}
+.scn{background:linear-gradient(135deg,#FFF3E8,#FFFAF0);border:2px solid #E0C898;border-radius:12px;padding:15px;margin:11px 0}
+.scn h4{color:#A03820;margin-bottom:7px;font-size:.82rem;text-transform:uppercase;letter-spacing:.4px}.scn p{font-size:.85rem;line-height:1.6}
+.pb{background:#F3F3F3;border-radius:10px;padding:11px;margin:9px 0}
+.pb h5{font-size:.79rem;color:#555;margin-bottom:6px;font-weight:700}.ptags{display:flex;flex-wrap:wrap;gap:5px}
+.pt{background:#fff;border:1px solid #C0CFE0;border-radius:14px;padding:3px 10px;font-size:.76rem}
+.wt{display:inline-block;padding:3px 9px;border-radius:12px;font-size:.71rem;font-weight:700;margin:2px}
+.wt.a{background:#EBF3FA;color:#1E4E7A;border:1px solid #4E7FAC}.wt.b{background:#FFF0E6;color:#8E2A0E;border:1px solid #C8562E}
+.wt.c{background:#E8F5EE;color:#1A5E30;border:1px solid #4A9660}.wt.d{background:#FFF6E0;color:#7A5200;border:1px solid #DDA020}.wt.e{background:#F2EBF8;color:#4A1E7A;border:1px solid #8E5ABE}
+.ma{display:none;background:#EBF3FA;border-radius:10px;padding:13px;margin-top:10px;border:1px solid #4E7FAC;font-size:.85rem;line-height:1.75}
+.ma.v{display:block}.ma.prb{background:#FFF0E6;border-color:#C8562E}.ma.evl{background:#E8F5EE;border-color:#4A9660}
+.sbar{display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px}
+.wa{width:100%;min-height:160px;border:2px solid #C0CFE0;border-radius:10px;padding:12px;font-size:.86rem;line-height:1.6;resize:vertical;font-family:inherit}
+.wa:focus{outline:none;border-color:#C8562E}
+.wcd{font-size:.79rem;color:#888;margin-top:4px}.wcd span{font-weight:700;color:#C8562E}
+.h1{background:#EBF3FA;color:#1E4E7A;padding:1px 4px;border-radius:3px;font-weight:700}
+.h2{background:#FFF0E6;color:#8E2A0E;padding:1px 4px;border-radius:3px;font-weight:700}
+.h3{background:#E8F5EE;color:#1A5E30;padding:1px 4px;border-radius:3px;font-weight:700}
+.h4c{background:#FFF6E0;color:#7A5200;padding:1px 4px;border-radius:3px;font-weight:700}
+.h5{background:#F2EBF8;color:#4A1E7A;padding:1px 4px;border-radius:3px;font-weight:700}
+select{padding:5px 8px;border-radius:6px;border:2px solid #C0CFE0;font-size:.82rem;font-family:inherit}
+select:focus{outline:none;border-color:#C8562E}
+.c2g{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.cw{background:#fff;border-radius:12px;padding:13px;border:1px solid #DDD}
+.vg3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}
+@media(max-width:720px){#sb{width:100%;height:auto;position:relative}#main{margin-left:0;padding:15px}#app{flex-direction:column}.tgrid,.c2g{grid-template-columns:1fr}}
+.fpb{position:fixed;bottom:22px;right:22px;z-index:200;background:#C8562E;color:#fff;border:none;border-radius:50px;padding:10px 18px;cursor:pointer;font-weight:700;font-size:.83rem;box-shadow:0 4px 14px rgba(200,86,46,.35);transition:all .2s}.fpb:hover{background:#A03820;transform:translateY(-2px)}
+@media print{#sb,#sb *,.sbar,.nr,.fpb,button,select{display:none!important}.mod{display:none!important}.mod.active{display:block!important}#main{margin:0!important;padding:10px!important;max-width:100%!important}body{background:#fff!important}.card{box-shadow:none!important;border:1px solid #CCC!important;break-inside:avoid;margin-bottom:12px!important}.act{border:1px solid #CCC!important}.ib,.irow,.scn{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div id="app">
+<nav id="sb">
+  <div id="sbh">
+    <h1>📋 Report Writing Pro</h1>
+    <p>LSC 1103 | Professional Report Skills</p>
+    <div class="pbw"><div id="pf"></div></div>
+    <span id="pt">0 / 9 modules</span>
+  </div>
+  <div id="nl"></div>
+</nav>
+<main id="main">
+  <div class="sbar">
+    <button class="btn bo" style="font-size:.75rem;padding:5px 10px" onclick="saveP()">💾 Save</button>
+    <button class="btn bo" style="font-size:.75rem;padding:5px 10px" onclick="loadP()">📂 Load</button>
+  </div>
+  <div id="mod-1" class="mod active"></div>
+  <div id="mod-2" class="mod"></div>
+  <div id="mod-3" class="mod"></div>
+  <div id="mod-4" class="mod"></div>
+  <div id="mod-5" class="mod"></div>
+  <div id="mod-6" class="mod"></div>
+  <div id="mod-7" class="mod"></div>
+  <div id="mod-8" class="mod"></div>
+  <div id="mod-9" class="mod"></div>
+  <div id="mod-10" class="mod"></div>
+  <button class="fpb" onclick="window.print()" title="Print this section">🖨️ Print Section</button>
+</main>
+</div>
+<script>
+const S={cur:1,done:new Set(),exam:{sc:null,iv:null,secs:4500}};
+const MODS=[{id:1,icon:'📋',name:'What is a Report?'},{id:2,icon:'🎯',name:'Choosing Report Type'},{id:3,icon:'🏷️',name:'Writing Titles'},{id:4,icon:'📝',name:'The Introduction'},{id:5,icon:'📊',name:'Reading Charts'},{id:6,icon:'🔬',name:'Findings & Analysis'},{id:7,icon:'✅',name:'Conclusion & Recs'},{id:8,icon:'📚',name:'Vocabulary'},{id:9,icon:'🏆',name:'Full Exam Practice'},{id:10,icon:'📖',name:'Final Review'}];
+
+function buildNav(){
+  document.getElementById('nl').innerHTML=MODS.map(m=>`<button class="nb ${m.id===1?'act':''}" id="nb${m.id}" onclick="goM(${m.id})"><div class="ni" id="ni${m.id}">${m.id}</div><div style="font-size:.77rem;line-height:1.25">${m.icon} ${m.name}</div></button>`).join('');
+}
+function goM(id){
+  S.done.add(S.cur);S.cur=id;
+  document.querySelectorAll('.mod').forEach(e=>e.classList.remove('active'));
+  document.getElementById('mod-'+id).classList.add('active');
+  document.querySelectorAll('.nb').forEach(e=>e.classList.remove('act'));
+  const nb=document.getElementById('nb'+id);if(nb)nb.classList.add('act');
+  updP();window.scrollTo({top:0,behavior:'smooth'});
+}
+function updP(){
+  const d=S.done.size;
+  document.getElementById('pf').style.width=(d/9*100)+'%';
+  document.getElementById('pt').textContent=`${d} / 9 modules`;
+  S.done.forEach(id=>{const ni=document.getElementById('ni'+id);if(ni)ni.textContent='✓';const nb=document.getElementById('nb'+id);if(nb)nb.classList.add('dn');});
+}
+function wc(t){return t.trim()===''?0:t.trim().split(/\s+/).length;}
+function nav(p,n){return `<div class="nr">${p?`<button class="btn bo" onclick="goM(${p})">← Previous</button>`:'<div></div>'}${n?`<button class="btn bp" onclick="goM(${n})">Next →</button>`:'<div></div>'}</div>`;}
+function fb(id,msg,ok){const el=document.getElementById(id);if(el)el.innerHTML=`<div class="fb ${ok?'c':'w'}">${msg}</div>`;}
+
+// ===== MODULE 1 =====
+function buildM1(){
+  const q=[
+    {q:"Which best describes a professional report?",o:["A personal essay sharing your opinion","A formal document presenting findings and recommendations","A creative story about a workplace situation","An informal message to a colleague"],c:1},
+    {q:"What is the main difference between a report and an essay?",o:["Reports are always shorter","Essays use formal language; reports do not","Reports are based on evidence; essays share opinions","There is no real difference"],c:2},
+    {q:"Which word does NOT describe a professional report?",o:["Objective","Emotional","Organized","Formal"],c:1}
+  ];
+  document.getElementById('mod-1').innerHTML=`
+  <div class="mh"><h2>📋 Module 1: What is a Professional Report?</h2><p>Understand the purpose, characteristics, and structure of professional reports.</p></div>
+  <div class="card"><h3>Definition & Purpose</h3>
+    <p style="font-size:.86rem;line-height:1.7;margin-bottom:11px">A professional report is a formal document used in business or workplace settings. It helps solve problems, collect information, or evaluate outcomes — <strong>not</strong> share personal opinions.</p>
+    <div class="ib"><strong>Key characteristics:</strong><ul style="margin-top:6px;padding-left:17px;line-height:1.9"><li><strong>Formal</strong> – professional language, no casual or emotional tone</li><li><strong>Organized</strong> – clear sections with logical structure</li><li><strong>Focused</strong> – addresses a specific issue</li><li><strong>Objective</strong> – based on facts and data, not personal feelings</li></ul></div>
+    <div class="ib b" style="margin-top:8px">⚠️ <strong>A report is NOT an essay!</strong> Essays share opinions. Reports present evidence, findings, and practical recommendations.</div>
+  </div>
+  <div class="card"><h3>The Exam Report Structure</h3>
+    <p style="font-size:.85rem;color:#666;margin-bottom:11px">You receive a scenario + two charts. Write this exact structure:</p>
+    <div class="irow"><span class="inum">🏷️</span><div><strong>Title</strong> — clearly describes what the report is about</div></div>
+    <div class="irow b"><span class="inum b">📝</span><div><strong>Introduction</strong> — 2–3 sentences, ~50 words</div></div>
+    <div class="irow g"><span class="inum g">📊</span><div><strong>Findings & Analysis</strong> — 5 sentences referencing both charts</div></div>
+    <div class="irow a"><span class="inum a">✅</span><div><strong>Conclusion & Recommendations</strong> — summarize + justify actions with data</div></div>
+    <div class="ib a" style="margin-top:10px">🎯 Target: <strong>~250 words</strong> &nbsp;|&nbsp; ⏱️ Exam time: <strong>75 minutes</strong></div>
+  </div>
+  <div class="card"><h3>The Three Report Types</h3>
+    <div class="tgrid">
+      <div class="tc i"><em>🔍</em><h4>Informative</h4><p>Analyzes or determines something. Presents facts to understand a topic.</p><p style="margin-top:6px;font-size:.75rem;font-weight:700;color:#1E4E7A">Verbs: analyze, determine, identify</p></div>
+      <div class="tc p"><em>⚠️</em><h4>Problem-Solving</h4><p>Addresses a challenge and proposes solutions to fix or improve it.</p><p style="margin-top:6px;font-size:.75rem;font-weight:700;color:#8E2A0E">Verbs: address, solve, propose</p></div>
+      <div class="tc e"><em>⚖️</em><h4>Evaluation</h4><p>Compares or assesses options, programs, or outcomes to recommend the best.</p><p style="margin-top:6px;font-size:.75rem;font-weight:700;color:#1A5E30">Verbs: compare, evaluate, assess</p></div>
+    </div>
+  </div>
+  <div class="card"><h3>🎯 Activity: Check Your Understanding</h3>
+    <div class="act">${q.map((item,i)=>`<div style="margin-bottom:14px"><p style="font-weight:700;font-size:.86rem;margin-bottom:8px">${i+1}. ${item.q}</p>${item.o.map((o,j)=>`<div class="opt" id="m1o${i}${j}" onclick="selM1(${i},${j})">${'ABCD'[j]}. ${o}</div>`).join('')}</div>`).join('')}</div>
+    <button class="btn bp" onclick="chkM1()">Check Answers</button><div id="m1fb"></div>
+  </div>${nav(null,2)}`;
+  window._m1={q,sel:{}};
+}
+function selM1(i,j){window._m1.sel[i]=j;for(let k=0;k<4;k++){const el=document.getElementById(`m1o${i}${k}`);if(el)el.className='opt'+(k===j?' s':'');}}
+function chkM1(){let sc=0;window._m1.q.forEach((item,i)=>{for(let j=0;j<item.o.length;j++){const el=document.getElementById(`m1o${i}${j}`);if(el)el.className='opt'+(j===item.c?' c':j===window._m1.sel[i]&&j!==item.c?' w':'');}if(window._m1.sel[i]===item.c)sc++;});if(sc===window._m1.q.length){fb('m1fb','🎉 Perfect! You understand the basics of professional reports.',true);S.done.add(1);updP();}else fb('m1fb',`Score: ${sc}/${window._m1.q.length}. Review correct answers (green).`,false);}
+
+// ===== MODULE 2 =====
+const M2SC=[
+  {t:"The HR Manager at Emirates Group asked for a report to study employee satisfaction levels, based on a survey of 300 staff in 2024.",a:"inf"},
+  {t:"The Principal noticed a sharp rise in student absenteeism and needs a report that identifies the causes and suggests actions to reduce absence rates.",a:"prob"},
+  {t:"The Training Manager wants to compare two professional development programs from 2023 and 2024, to decide which one continues next year.",a:"eval"},
+  {t:"The Operations Manager requested a report to analyze customer complaint patterns at a retail company, based on six months of data.",a:"inf"}
+];
+let _m2sel={};
+function buildM2(){
+  document.getElementById('mod-2').innerHTML=`
+  <div class="mh"><h2>🎯 Module 2: Choosing the Report Type</h2><p>Practice identifying the correct report type from workplace scenarios.</p></div>
+  <div class="card"><h3>How to Identify the Report Type</h3>
+    <div class="ib b">🔍 <strong>Informative?</strong> → Analyze data, determine patterns, identify facts about a topic.</div>
+    <div class="ib">⚠️ <strong>Problem-Solving?</strong> → A problem exists; suggest solutions to fix it.</div>
+    <div class="ib g">⚖️ <strong>Evaluation?</strong> → Compare two or more options, programs, or outcomes.</div>
+  </div>
+  <div class="card"><h3>🎯 Activity: Classify the Scenarios</h3>
+    <p style="font-size:.85rem;color:#555;margin-bottom:12px">Read each scenario. Select the correct report type.</p>
+    <div id="m2sc">${M2SC.map((s,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid #E0D0C0"><p style="font-size:.85rem;line-height:1.6;margin-bottom:9px"><strong>${i+1}.</strong> ${s.t}</p><div style="display:flex;gap:6px;flex-wrap:wrap">${[['inf','🔍 Informative','bs'],['prob','⚠️ Problem-Solving','bp'],['eval','⚖️ Evaluation','bg']].map(([k,l,c])=>`<button class="btn ${c}" id="s2${i}${k}" onclick="selM2(${i},'${k}')" style="font-size:.77rem;padding:5px 10px">${l}</button>`).join('')}</div></div>`).join('')}</div>
+    <button class="btn bp" onclick="chkM2()" style="margin-top:11px">Check All Answers</button>
+    <div id="m2fb" style="margin-top:8px"></div>
+  </div>${nav(1,3)}`;
+  _m2sel={};
+}
+function selM2(i,k){_m2sel[i]=k;['inf','prob','eval'].forEach(t=>{const el=document.getElementById(`s2${i}${t}`);if(el)el.style.opacity=t===k?'1':'0.5';});}
+function chkM2(){let sc=0;M2SC.forEach((s,i)=>{['inf','prob','eval'].forEach(t=>{const el=document.getElementById(`s2${i}${t}`);if(!el)return;el.style.opacity='1';el.style.outline=t===s.a?'3px solid #4A9660':t===_m2sel[i]&&t!==s.a?'3px solid #B03030':'none';});if(_m2sel[i]===s.a)sc++;});if(sc===M2SC.length){fb('m2fb','🎉 Excellent! You can identify all three report types.',true);S.done.add(2);updP();}else fb('m2fb',`Score: ${sc}/${M2SC.length}. Correct answers highlighted in green.`,false);}
+
+// ===== MODULE 3 =====
+function buildM3(){
+  document.getElementById('mod-3').innerHTML=`
+  <div class="mh"><h2>🏷️ Module 3: Writing Report Titles</h2><p>Master the title formula using 5W+1H.</p></div>
+  <div class="card"><h3>The Title Formula</h3>
+    <div style="text-align:center;background:linear-gradient(135deg,#FFF0E6,#FFFAF0);border-radius:12px;padding:15px;margin-bottom:12px;border:2px solid #E0C898"><p style="font-size:1.04rem;font-weight:800;color:#A03820">Report Type + Purpose + Details</p><p style="font-size:.79rem;color:#666;margin-top:4px">Usually 10–20 words long</p></div>
+    <div style="display:flex;gap:5px;flex-wrap:wrap;margin:8px 0"><span class="wt a">WHO</span><span class="wt b">WHAT</span><span class="wt c">WHERE</span><span class="wt d">WHEN</span><span class="wt e">HOW</span></div>
+    <p style="font-size:.83rem;line-height:1.7;color:#444;margin-top:8px">Not every title needs all five. Use the ones that are <strong>relevant and available</strong> in your scenario.</p>
+  </div>
+  <div class="card"><h3>Capitalization Rules</h3>
+    <div class="ib"><strong>Capitalize the important words.</strong><ul style="margin-top:6px;padding-left:17px;line-height:1.9;font-size:.83rem"><li>The <strong>first word</strong> must always be capitalized</li><li>Capitalize nouns, verbs, adjectives, and adverbs</li><li>Short prepositions (in, on, at, of), articles (a, an, the), conjunctions (and, but) → lowercase, unless the first word</li></ul></div>
+    <div style="background:#E8F5EE;border-radius:8px;padding:10px 13px;font-size:.86rem;margin-top:9px">✅ <em>An Evaluation Report on Employee Satisfaction Levels at Gulf Motors in 2024</em></div>
+    <div style="background:#FDE8E8;border-radius:8px;padding:10px 13px;font-size:.86rem;margin-top:6px">❌ <em>an evaluation report on employee satisfaction levels at gulf motors in 2024</em></div>
+  </div>
+  <div class="card"><h3>🏷️ Title Analysis: Identify the 5W+1H</h3>
+    <p style="font-size:.85rem;color:#555;margin-bottom:11px">Study the annotated example, then classify the highlighted parts below.</p>
+    <div style="background:#F4F4F4;border-radius:10px;padding:14px;font-size:.92rem;line-height:2.5;margin-bottom:12px">An Evaluation Report on <span class="h2">Employee Satisfaction Levels</span> at <span class="h3">Gulf Motors, Abu Dhabi</span> in <span class="h4c">2024</span>, requested by <span class="h1">the HR Manager</span>, to <span class="h5">improve employee retention</span></div>
+    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:13px"><span class="wt a">WHO = the HR Manager</span><span class="wt b">WHAT = Employee Satisfaction Levels</span><span class="wt c">WHERE = Gulf Motors, Abu Dhabi</span><span class="wt d">WHEN = 2024</span><span class="wt e">HOW = improve employee retention</span></div>
+    <hr style="border:none;border-top:2px dashed #E0D0C0;margin:14px 0">
+    <p style="font-weight:700;font-size:.86rem;margin-bottom:10px">Now classify this title:</p>
+    <div style="background:#F4F4F4;border-radius:10px;padding:13px;font-size:.91rem;line-height:2.6;margin-bottom:12px">A Problem-Solving Report to <span style="background:#FFE082;padding:2px 5px;border-radius:4px">address high absenteeism rates</span> among <span style="background:#B2DFDB;padding:2px 5px;border-radius:4px">first-year students</span> at <span style="background:#F8BBD0;padding:2px 5px;border-radius:4px">Higher Colleges of Technology</span> during <span style="background:#CE93D8;padding:2px 5px;border-radius:4px">Semester 1, 2024</span></div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      ${[['a','address high absenteeism rates','what'],['b','first-year students','who'],['c','Higher Colleges of Technology','where'],['d','Semester 1, 2024','when']].map(([k,l,ans])=>`<div style="display:flex;align-items:center;gap:10px;font-size:.83rem"><span style="min-width:208px;font-style:italic">"${l}"</span><select id="ta${k}" data-ans="${ans}"><option value="">--</option><option value="who">WHO</option><option value="what">WHAT</option><option value="where">WHERE</option><option value="when">WHEN</option><option value="how">HOW</option></select><span id="tafb${k}"></span></div>`).join('')}
+    </div>
+    <button class="btn bp" onclick="chkTA()" style="margin-top:11px">Check Title Analysis</button>
+    <div id="tafb" style="margin-top:8px"></div>
+  </div>
+  <div class="card"><h3>🎯 Activity: Build a Title</h3>
+    <div class="act">
+      <div class="scn" style="margin-bottom:12px"><h4>📋 Scenario</h4><p>The Safety Manager at ADNOC has asked you to compare two workplace safety training programs offered to engineers in 2023, to determine which was more effective.</p></div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div><label style="font-size:.82rem;font-weight:700;display:block;margin-bottom:4px">Report Type:</label><select id="tb1" style="width:100%"><option value="">--</option><option value="c">An Evaluation Report</option><option value="w">An Informative Report</option><option value="w2">A Problem-Solving Report</option></select></div>
+        <div><label style="font-size:.82rem;font-weight:700;display:block;margin-bottom:4px">Purpose:</label><select id="tb2" style="width:100%"><option value="">--</option><option value="c">on the Effectiveness of Two Workplace Safety Training Programs</option><option value="w">about Safety Issues at ADNOC</option><option value="w2">to Solve Safety Problems</option></select></div>
+        <div><label style="font-size:.82rem;font-weight:700;display:block;margin-bottom:4px">Details (Who/Where/When):</label><select id="tb3" style="width:100%"><option value="">--</option><option value="c">for Engineers at ADNOC in 2023</option><option value="w">at a Company</option><option value="w2">for All Staff</option></select></div>
+      </div>
+      <button class="btn bp" onclick="chkTB()" style="margin-top:10px">Build My Title</button>
+      <div id="tbfb" style="margin-top:8px"></div>
+    </div>
+  </div>${nav(2,4)}`;
+}
+function chkTA(){const ans={a:'what',b:'who',c:'where',d:'when'};let sc=0;Object.entries(ans).forEach(([k,a])=>{const sel=document.getElementById('ta'+k)?.value;const el=document.getElementById('tafb'+k);if(!el)return;if(sel===a){el.textContent='✅';sc++;}else el.textContent=`❌→${a.toUpperCase()}`;});if(sc===4){fb('tafb','🎉 All correct! You can identify the 5W+1H in a report title.',true);S.done.add(3);updP();}else fb('tafb',`${sc}/4 correct. Check the feedback icons next to each answer.`,false);}
+function chkTB(){const t1=document.getElementById('tb1')?.value,t2=document.getElementById('tb2')?.value,t3=document.getElementById('tb3')?.value;if(t1==='c'&&t2==='c'&&t3==='c'){fb('tbfb','🎉 Perfect! "An Evaluation Report on the Effectiveness of Two Workplace Safety Training Programs for Engineers at ADNOC in 2023" — 17 words ✅',true);}else{const msg=t1!=='c'?'Report type should be Evaluation — the task compares two programs.':t2!=='c'?'The purpose should describe what is being compared.':'The details should include who (engineers), where (ADNOC), and when (2023).';fb('tbfb',msg,false);}}
+
+// ===== MODULE 4 =====
+function buildM4(){
+  document.getElementById('mod-4').innerHTML=`
+  <div class="mh"><h2>📝 Module 4: Writing the Introduction</h2><p>Learn the four essential elements and use the template to write your introduction.</p></div>
+  <div class="card"><h3>The 4 Essential Elements</h3>
+    <div class="irow"><span class="inum">1</span><div><strong>Type of report</strong> – Informative, Problem-Solving, or Evaluation?</div></div>
+    <div class="irow b"><span class="inum b">2</span><div><strong>Who requested it</strong> – Name or job title of the requester.</div></div>
+    <div class="irow g"><span class="inum g">3</span><div><strong>Purpose of the report</strong> – What is it trying to achieve?</div></div>
+    <div class="irow a"><span class="inum a">4</span><div><strong>Summary of sections</strong> – What will the reader find inside?</div></div>
+    <div class="ib a" style="margin-top:10px">🎯 Target: <strong>2–3 sentences</strong>, approximately <strong>50 words</strong></div>
+  </div>
+  <div class="card"><h3>The Template</h3>
+    <div class="tmpl">"This is an <b>[Report Type]</b> report, requested by <b>[Name/Title]</b>. The purpose of this report is to <b>[verb]</b> <b>[topic/issue]</b> to help <b>[goal]</b>. It includes an overview of <b>[key sections]</b>, with each section providing insights and data that support the main findings and conclusions."</div>
+  </div>
+  <div class="card"><h3>Model Introductions — Click to View</h3>
+    <div style="display:flex;gap:7px;margin-bottom:11px;flex-wrap:wrap">
+      <button class="btn bs" onclick="showMdl('inf')">🔍 Informative</button>
+      <button class="btn bp" onclick="showMdl('prb')">⚠️ Problem-Solving</button>
+      <button class="btn bg" onclick="showMdl('evl')">⚖️ Evaluation</button>
+    </div>
+    <div id="mdl-inf" class="ma v"><p style="font-style:italic;line-height:1.8">"This is an <strong>informative</strong> report, requested by <strong>the HR Manager at Al Futtaim Group</strong>. The purpose of this report is to <strong>analyze employee satisfaction levels</strong> across all departments to help <strong>improve workplace conditions</strong>. It includes an overview of <strong>survey results and chart data</strong>, with each section providing insights and data that support the main findings and conclusions."</p><p style="font-size:.77rem;color:#555;margin-top:6px">~52 words ✅</p></div>
+    <div id="mdl-prb" class="ma prb"><p style="font-style:italic;line-height:1.8">"This is a <strong>problem-solving</strong> report, requested by <strong>the College Director</strong>. The purpose of this report is to <strong>address the issue of high student absenteeism</strong> and help <strong>reduce absence rates across all departments</strong>. It includes an overview of <strong>absenteeism data and contributing factors</strong>, with each section providing insights and data that support the main findings and conclusions."</p><p style="font-size:.77rem;color:#555;margin-top:6px">~53 words ✅</p></div>
+    <div id="mdl-evl" class="ma evl"><p style="font-style:italic;line-height:1.8">"This is an <strong>evaluation</strong> report, requested by <strong>the Training and Development Manager</strong>. The purpose of this report is to <strong>compare two workplace training programs</strong> in order to help <strong>select the most effective option for staff development</strong>. It includes an overview of <strong>participant feedback and performance outcomes</strong>, with each section providing insights and data that support the main findings and conclusions."</p><p style="font-size:.77rem;color:#555;margin-top:6px">~54 words ✅</p></div>
+  </div>
+  <div class="card"><h3>🎯 Activity: Complete the Introduction</h3>
+    <div class="scn"><h4>📋 Scenario</h4><p>The Operations Manager at Emirates Airlines has requested a report to investigate the main reasons for customer complaints received during 2024. A survey of 200 passengers was conducted.</p></div>
+    <div class="act" style="font-size:.87rem;line-height:2.7">
+      "This is <select id="gf1"><option value="">--</option><option value="c">an informative</option><option value="w1">a problem-solving</option><option value="w2">an evaluation</option></select>
+      report, requested by <select id="gf2"><option value="">--</option><option value="c">the Operations Manager at Emirates Airlines</option><option value="w1">the passengers</option><option value="w2">a customer</option></select>.
+      The purpose of this report is to <select id="gf3"><option value="">--</option><option value="c">investigate the main reasons for customer complaints</option><option value="w1">write a story about customer service</option><option value="w2">compare two airlines</option></select>
+      received during 2024, to help <select id="gf4"><option value="">--</option><option value="c">improve customer satisfaction</option><option value="w1">increase ticket prices</option><option value="w2">hire more staff</option></select>. It includes an overview of survey results and chart data, with each section providing insights and data that support the main findings and conclusions."
+    </div>
+    <button class="btn bp" onclick="chkM4()" style="margin-top:10px">Check My Introduction</button>
+    <div id="m4fb" style="margin-top:8px"></div>
+  </div>${nav(3,5)}`;
+}
+function showMdl(k){['inf','prb','evl'].forEach(t=>document.getElementById('mdl-'+t)?.classList.remove('v'));document.getElementById('mdl-'+k)?.classList.add('v');}
+function chkM4(){let sc=0;['gf1','gf2','gf3','gf4'].forEach(f=>{const el=document.getElementById(f);if(!el)return;if(el.value==='c'){el.style.borderColor='#4A9660';sc++;}else el.style.borderColor='#B03030';});if(sc===4){fb('m4fb','🎉 Perfect! All four elements correct: type → requester → purpose → goal.',true);S.done.add(4);updP();}else fb('m4fb',`${sc}/4 correct. Highlighted fields show errors. Remember: type → requester → purpose → goal.`,false);}
+
+// ===== MODULE 5 =====
+function buildM5(){
+  const bq=[
+    {q:"What is the most common cause of dissatisfaction in Chart 1?",o:["Communication (25%)","Workload (38%)","Salary (12%)","Management (20%)"],c:1},
+    {q:"Which sentence correctly reports the bar chart data?",o:["38% in workload.","According to Chart 1, workload was the leading issue, reported by 38% of employees.","People don't like their workload.","Chart 1 shows lots of problems."],c:1},
+    {q:"What is the second-largest cause of dissatisfaction?",o:["Salary","Other","Communication","Management"],c:2}
+  ];
+  const pq=[
+    {q:"What is the most preferred employee solution in Chart 2?",o:["Training Programs (20%)","Flexible Hours (35%)","Salary Review (12%)","Better Communication (25%)"],c:1},
+    {q:"Which sentence correctly introduces a Chart 2 finding?",o:["People like flexible hours.","Chart 2 says 35%.","As shown in Chart 2, flexible working hours were the most preferred solution, chosen by 35% of respondents.","35% want flexible hours."],c:2}
+  ];
+  document.getElementById('mod-5').innerHTML=`
+  <div class="mh"><h2>📊 Module 5: Reading Charts & Graphs</h2><p>Identify key findings and report them formally.</p></div>
+  <div class="card"><h3>What to Look For</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:8px">
+      <div class="ib">📊 <strong>Bar Chart:</strong> Find the tallest (largest) and shortest bars.</div>
+      <div class="ib b">🥧 <strong>Pie Chart:</strong> Find the largest and smallest slices.</div>
+      <div class="ib g">🔢 <strong>Key figures:</strong> Use the exact percentage in your sentence.</div>
+      <div class="ib a">💬 <strong>Insight:</strong> Don't just copy numbers — explain what they <em>mean</em>!</div>
+    </div>
+    <div class="pb" style="margin-top:10px"><h5>📌 Chart Reference Phrases:</h5><div class="ptags"><span class="pt">According to Chart 1,</span><span class="pt">As shown in Chart 2,</span><span class="pt">Chart 1 indicates that</span><span class="pt">The data in Chart 2 reveals that</span><span class="pt">(See Chart 1)</span><span class="pt">(See Chart 2)</span></div></div>
+  </div>
+  <div class="card"><h3>📊 Practice: Bar Chart</h3>
+    <div class="cw">
+      <svg viewBox="0 0 500 258" style="width:100%;max-width:480px;display:block;margin:0 auto">
+        <text x="250" y="14" text-anchor="middle" font-size="10.5" font-weight="700" fill="#333">Chart 1: Sources of Employee Dissatisfaction (n=150)</text>
+        <line x1="53" y1="215" x2="468" y2="215" stroke="#CCC"/>
+        <line x1="53" y1="175" x2="468" y2="175" stroke="#EEE" stroke-dasharray="3"/>
+        <line x1="53" y1="135" x2="468" y2="135" stroke="#EEE" stroke-dasharray="3"/>
+        <line x1="53" y1="95" x2="468" y2="95" stroke="#EEE" stroke-dasharray="3"/>
+        <line x1="53" y1="55" x2="468" y2="55" stroke="#EEE" stroke-dasharray="3"/>
+        <text x="48" y="219" text-anchor="end" font-size="8.5" fill="#666">0%</text>
+        <text x="48" y="179" text-anchor="end" font-size="8.5" fill="#666">10%</text>
+        <text x="48" y="139" text-anchor="end" font-size="8.5" fill="#666">20%</text>
+        <text x="48" y="99" text-anchor="end" font-size="8.5" fill="#666">30%</text>
+        <text x="48" y="59" text-anchor="end" font-size="8.5" fill="#666">40%</text>
+        <rect x="72" y="63" width="52" height="152" fill="#C8562E" rx="3"/><text x="98" y="59" text-anchor="middle" font-size="9" font-weight="bold" fill="#C8562E">38%</text><text x="98" y="232" text-anchor="middle" font-size="8.5" fill="#555">Workload</text>
+        <rect x="155" y="115" width="52" height="100" fill="#4E7FAC" rx="3"/><text x="181" y="111" text-anchor="middle" font-size="9" font-weight="bold" fill="#4E7FAC">25%</text><text x="181" y="232" text-anchor="middle" font-size="8.5" fill="#555">Comms</text>
+        <rect x="238" y="135" width="52" height="80" fill="#4A9660" rx="3"/><text x="264" y="131" text-anchor="middle" font-size="9" font-weight="bold" fill="#4A9660">20%</text><text x="264" y="232" text-anchor="middle" font-size="8.5" fill="#555">Mgmt</text>
+        <rect x="321" y="167" width="52" height="48" fill="#DDA020" rx="3"/><text x="347" y="163" text-anchor="middle" font-size="9" font-weight="bold" fill="#DDA020">12%</text><text x="347" y="232" text-anchor="middle" font-size="8.5" fill="#555">Salary</text>
+        <rect x="404" y="195" width="52" height="20" fill="#8E5ABE" rx="3"/><text x="430" y="191" text-anchor="middle" font-size="9" font-weight="bold" fill="#8E5ABE">5%</text><text x="430" y="232" text-anchor="middle" font-size="8.5" fill="#555">Other</text>
+        <line x1="53" y1="215" x2="53" y2="40" stroke="#AAA"/>
+      </svg>
+    </div>
+    <div class="act" style="margin-top:12px">${bq.map((item,i)=>`<div style="margin-bottom:13px"><p style="font-weight:700;font-size:.85rem;margin-bottom:7px">${i+1}. ${item.q}</p>${item.o.map((o,j)=>`<div class="opt" id="bq${i}${j}" onclick="selQ('bq',${i},${j},${item.o.length})">${'ABCD'[j]}. ${o}</div>`).join('')}</div>`).join('')}</div>
+    <button class="btn bs" onclick="chkQ('bq',${JSON.stringify(bq.map(q=>q.c))},'bqfb',5)">Check Answers</button>
+    <div id="bqfb" style="margin-top:8px"></div>
+  </div>
+  <div class="card"><h3>🥧 Practice: Pie Chart</h3>
+    <div class="cw">
+      <svg viewBox="0 0 500 258" style="width:100%;max-width:480px;display:block;margin:0 auto">
+        <text x="250" y="14" text-anchor="middle" font-size="10.5" font-weight="700" fill="#333">Chart 2: Preferred Solutions Suggested by Employees</text>
+        <path d="M152,148 L152,48 A100,100 0 0,1 238,98 Z" fill="#C8562E"/>
+        <path d="M152,148 L238,98 A100,100 0 0,1 237,250 Z" fill="#4E7FAC"/>
+        <path d="M152,148 L237,250 A100,100 0 0,1 75,238 Z" fill="#4A9660"/>
+        <path d="M152,148 L75,238 A100,100 0 0,1 59,106 Z" fill="#DDA020"/>
+        <path d="M152,148 L59,106 A100,100 0 0,1 152,48 Z" fill="#8E5ABE"/>
+        <text x="200" y="88" font-size="9" font-weight="bold" fill="white">35%</text>
+        <text x="238" y="176" font-size="9" font-weight="bold" fill="white">25%</text>
+        <text x="142" y="232" font-size="9" font-weight="bold" fill="white">20%</text>
+        <text x="74" y="186" font-size="9" font-weight="bold" fill="white">12%</text>
+        <text x="82" y="126" font-size="9" font-weight="bold" fill="white">8%</text>
+        <rect x="280" y="55" width="11" height="11" fill="#C8562E" rx="2"/><text x="295" y="64" font-size="9" fill="#333">Flexible Hours (35%)</text>
+        <rect x="280" y="75" width="11" height="11" fill="#4E7FAC" rx="2"/><text x="295" y="84" font-size="9" fill="#333">Better Communication (25%)</text>
+        <rect x="280" y="95" width="11" height="11" fill="#4A9660" rx="2"/><text x="295" y="104" font-size="9" fill="#333">Training Programs (20%)</text>
+        <rect x="280" y="115" width="11" height="11" fill="#DDA020" rx="2"/><text x="295" y="124" font-size="9" fill="#333">Salary Review (12%)</text>
+        <rect x="280" y="135" width="11" height="11" fill="#8E5ABE" rx="2"/><text x="295" y="144" font-size="9" fill="#333">Other (8%)</text>
+      </svg>
+    </div>
+    <div class="act" style="margin-top:12px">${pq.map((item,i)=>`<div style="margin-bottom:13px"><p style="font-weight:700;font-size:.85rem;margin-bottom:7px">${i+1}. ${item.q}</p>${item.o.map((o,j)=>`<div class="opt" id="pq${i}${j}" onclick="selQ('pq',${i},${j},${item.o.length})">${'ABCD'[j]}. ${o}</div>`).join('')}</div>`).join('')}</div>
+    <button class="btn bs" onclick="chkQ('pq',${JSON.stringify(pq.map(q=>q.c))},'pqfb',5)">Check Answers</button>
+    <div id="pqfb" style="margin-top:8px"></div>
+  </div>${nav(4,6)}`;
+  window._qsel={};
+}
+function selQ(pfx,i,j,n){const k=pfx+i;if(!window._qsel)window._qsel={};window._qsel[k]=j;for(let x=0;x<n;x++){const el=document.getElementById(pfx+i+x);if(el)el.className='opt'+(x===j?' s':'');}}
+function chkQ(pfx,corrects,fbId,doneId){let sc=0;corrects.forEach((c,i)=>{for(let j=0;j<6;j++){const el=document.getElementById(pfx+i+j);if(!el)break;el.className='opt'+(j===c?' c':(window._qsel[pfx+i]===j&&j!==c?' w':''));}if(window._qsel[pfx+i]===c)sc++;});if(sc===corrects.length){fb(fbId,'🎉 All correct! Great chart reading skills.',true);if(doneId){S.done.add(5);updP();}}else fb(fbId,`Score: ${sc}/${corrects.length}. Review correct answers in green.`,false);}
+
+// ===== MODULE 6 =====
+const M6S=[
+  {id:0,text:"A survey was conducted among 150 employees to investigate the main causes of dissatisfaction in the workplace (See Chart 1).",ord:1},
+  {id:1,text:"According to Chart 1, workload was identified as the most significant issue, reported by 38% of respondents.",ord:2},
+  {id:2,text:"On the other hand, communication problems accounted for a further 25% of responses, indicating that interpersonal challenges are also a major concern.",ord:3},
+  {id:3,text:"Additionally, Chart 2 reveals that flexible working hours were the most preferred solution, with 35% of employees selecting this option (See Chart 2).",ord:4},
+  {id:4,text:"Notably, a significant proportion of staff (25%) also cited improved communication strategies as a priority, suggesting this issue requires urgent attention.",ord:5}
+];
+let _m6=[],_m6ok=false;
+function buildM6(){
+  _m6=[...M6S].sort(()=>Math.random()-.5).map(s=>s.id);
+  document.getElementById('mod-6').innerHTML=`
+  <div class="mh"><h2>🔬 Module 6: Writing Findings & Analysis</h2><p>Use the 5-sentence structure to write a complete, data-driven findings paragraph.</p></div>
+  <div class="card"><h3>The 5-Sentence Structure</h3>
+    <div class="irow"><span class="inum">S1</span><div><strong>Purpose & Participants:</strong> Who was surveyed, why, and what was investigated.</div></div>
+    <div class="irow b"><span class="inum b">S2</span><div><strong>First Main Finding (Chart 1):</strong> Most important result with a figure.</div></div>
+    <div class="irow b"><span class="inum b">S3</span><div><strong>Detail from Chart 1:</strong> Supporting insight or second-largest finding.</div></div>
+    <div class="irow g"><span class="inum g">S4</span><div><strong>Second Key Finding (Chart 2):</strong> Main result from Chart 2 with a figure.</div></div>
+    <div class="irow g"><span class="inum g">S5</span><div><strong>Insight from Chart 2:</strong> Notable or surprising result from Chart 2.</div></div>
+    <div class="pb" style="margin-top:10px"><h5>🔗 Linking Phrases:</h5><div class="ptags"><span class="pt">On the other hand,</span><span class="pt">Additionally,</span><span class="pt">Also,</span><span class="pt">Furthermore,</span><span class="pt">In contrast,</span><span class="pt">Notably,</span></div></div>
+  </div>
+  <div class="card"><h3>🎯 Activity 1: Put Sentences in Order</h3>
+    <p style="font-size:.85rem;color:#555;margin-bottom:10px">Click ▲ / ▼ to arrange sentences into the correct order (S1 → S5).</p>
+    <div id="m6list"></div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn bp" onclick="chkReorder()">Check Order</button>
+      <button class="btn bo" onclick="document.getElementById('m6mdl').classList.add('v')">Show Model</button>
+    </div>
+    <div id="m6rfb" style="margin-top:8px"></div>
+    <div class="ma" id="m6mdl" style="margin-top:11px">
+      <p style="font-size:.83rem;font-weight:700;color:#1E4E7A;margin-bottom:6px">✅ Correct order:</p>
+      <p style="font-size:.83rem;line-height:1.85;font-style:italic">"A survey was conducted among 150 employees to investigate the main causes of dissatisfaction in the workplace (See Chart 1). According to Chart 1, workload was identified as the most significant issue, reported by 38% of respondents. On the other hand, communication problems accounted for a further 25% of responses, indicating that interpersonal challenges are also a major concern. Additionally, Chart 2 reveals that flexible working hours were the most preferred solution, with 35% of employees selecting this option (See Chart 2). Notably, a significant proportion of staff (25%) also cited improved communication strategies as a priority, suggesting this issue requires urgent attention."</p>
+    </div>
+  </div>
+  <div class="card"><h3>🎯 Activity 2: Write Your Own Findings</h3>
+    <p style="font-size:.85rem;color:#555;margin-bottom:10px">Write each sentence using the prompts. Refer to the Charts in Module 5.</p>
+    ${[['S1 — Purpose & Participants','A survey was conducted among ___ to investigate...'],['S2 — First Finding (Chart 1)','According to Chart 1, ___ was the most significant issue, reported by ___% ...'],['S3 — Detail from Chart 1','On the other hand, ___ accounted for ___% of responses, indicating that...'],['S4 — Finding from Chart 2','Additionally, Chart 2 reveals that ___ was the most preferred solution, with ___% ...'],['S5 — Insight from Chart 2','Notably, ___% also cited ___, suggesting that...']].map(([l,p],i)=>`<div style="margin-bottom:9px"><label style="font-size:.79rem;font-weight:700;color:#C8562E;display:block;margin-bottom:3px">${l}:</label><textarea style="width:100%;min-height:54px;border:2px solid #C0CFE0;border-radius:8px;padding:7px;font-size:.83rem;line-height:1.5;resize:vertical;font-family:inherit" id="m6g${i}" placeholder="${p}"></textarea></div>`).join('')}
+    <button class="btn bp" onclick="chkGuided()">Check My Paragraph</button>
+    <div id="m6gfb" style="margin-top:8px"></div>
+  </div>${nav(5,7)}`;
+  renderRO();
+}
+function renderRO(){const c=document.getElementById('m6list');if(!c)return;c.innerHTML=_m6.map((id,pos)=>{const s=M6S.find(x=>x.id===id);return `<div class="si" id="si${id}"><div style="display:flex;flex-direction:column"><button onclick="mvS(${id},-1)" style="background:none;border:none;cursor:pointer;color:#888;font-size:.79rem;padding:0">▲</button><button onclick="mvS(${id},1)" style="background:none;border:none;cursor:pointer;color:#888;font-size:.79rem;padding:0">▼</button></div><span style="background:#C8562E;color:#fff;border-radius:50%;width:21px;height:21px;display:flex;align-items:center;justify-content:center;font-size:.71rem;font-weight:700;flex-shrink:0" id="sn${id}">${pos+1}</span><span style="font-size:.82rem;line-height:1.45">${s.text}</span></div>`;}).join('');}
+function mvS(id,dir){const idx=_m6.indexOf(id),ni=idx+dir;if(ni<0||ni>=_m6.length)return;[_m6[idx],_m6[ni]]=[_m6[ni],_m6[idx]];const c=document.getElementById('m6list');_m6.forEach((sid,pos)=>{const el=document.getElementById('si'+sid);const num=document.getElementById('sn'+sid);if(el)c.appendChild(el);if(num)num.textContent=pos+1;});}
+function chkReorder(){let sc=0;_m6.forEach((id,pos)=>{const s=M6S.find(x=>x.id===id);const el=document.getElementById('si'+id);if(!el)return;el.classList.remove('ok','no');if(s.ord===pos+1){el.classList.add('ok');sc++;}else el.classList.add('no');});if(sc===5){fb('m6rfb','🎉 Perfect! S1: purpose → S2–S3: Chart 1 → S4–S5: Chart 2.',true);S.done.add(6);updP();}else fb('m6rfb',`${sc}/5 correct. Start with survey purpose, then Chart 1, then Chart 2.`,false);}
+function chkGuided(){const filled=[0,1,2,3,4].filter(i=>(document.getElementById('m6g'+i)?.value.trim().length||0)>15);if(filled.length===5){fb('m6gfb','✅ All five sentences written! Self-check: exact percentages? Both Chart 1 and Chart 2 referenced? Numbers explained, not just copied?',true);S.done.add(6);updP();}else fb('m6gfb',`Please complete all 5 sentences. ${filled.length}/5 done.`,false);}
+
+// ===== MODULE 7 =====
+let _jSel=new Set();
+function buildM7(){
+  document.getElementById('mod-7').innerHTML=`
+  <div class="mh"><h2>✅ Module 7: Conclusion & Recommendations</h2><p>Summarize findings, identify issues, and make justified data-driven recommendations.</p></div>
+  <div class="card"><h3>The Conclusion Structure</h3>
+    <div style="text-align:center;padding:10px;background:#FFF0E6;border-radius:10px;margin-bottom:11px;font-size:.86rem;color:#A03820;font-weight:700">Summary → Main Issue → Recommendation 1 + Reason → Recommendation 2 + Reason</div>
+    <div class="irow"><span class="inum">1</span><div><strong>Summarize:</strong> What do the main findings show overall?</div></div>
+    <div class="irow b"><span class="inum b">2</span><div><strong>Identify the Issue:</strong> Name the most important problem.</div></div>
+    <div class="irow g"><span class="inum g">3</span><div><strong>Recommend + Justify:</strong> Suggest an action and explain WHY using data.</div></div>
+    <div class="irow g"><span class="inum g">4</span><div><strong>Second Recommend + Justify:</strong> A second recommendation with data support.</div></div>
+    <div class="ib a" style="margin-top:9px">⚠️ <strong>Key rule:</strong> Every recommendation must be <strong>justified by the findings</strong>. No random suggestions — connect each one to the data!</div>
+  </div>
+  <div class="card"><h3>The Recommendation Pattern</h3>
+    <div class="tmpl">"It is recommended that <b>[action]</b> because the data indicates that <b>[evidence]</b>, which suggests that <b>[expected outcome]</b>."</div>
+    <div style="margin-top:10px;background:#EBF3FA;border-radius:10px;padding:12px;font-size:.84rem;line-height:1.75">✅ <strong>Example:</strong> "It is recommended that the company introduce flexible working hours because the data indicates that 35% of employees selected this as their preferred solution (See Chart 2), which suggests it would significantly improve overall satisfaction."</div>
+  </div>
+  <div class="card"><h3>🎯 Activity 1: Find the Justifications</h3>
+    <p style="font-size:.85rem;color:#555;margin-bottom:10px">Click on the <strong>justification</strong> parts of the paragraph (the evidence that explains why each recommendation is made).</p>
+    <div class="act">
+      <div style="background:#fff;border-radius:10px;padding:12px;font-size:.85rem;line-height:2.1;border:1px solid #C0CFE0">
+        Overall, the survey results indicate that workload and communication are the two most pressing challenges. It is recommended that management introduce flexible working hour arrangements
+        <span id="j1" onclick="selJ(1)" style="cursor:pointer;border-radius:4px;padding:2px 4px;background:#F9F9F9;transition:all .2s">because the findings show that 35% of employees selected this as their preferred solution (See Chart 2), suggesting it would significantly improve morale.</span>
+        Furthermore, it is recommended that the company invest in communication training for team leaders
+        <span id="j2" onclick="selJ(2)" style="cursor:pointer;border-radius:4px;padding:2px 4px;background:#F9F9F9;transition:all .2s">as the data reveals that 25% of employees cited poor communication as a key source of dissatisfaction, indicating a clear need for structured intervention.</span>
+        Addressing these two areas is likely to lead to meaningful improvements in employee wellbeing.
+      </div>
+      <p style="font-size:.77rem;color:#888;margin-top:7px">👆 Click the justification text to highlight it</p>
+    </div>
+    <div id="jfb" style="margin-top:8px"></div>
+  </div>
+  <div class="card"><h3>🎯 Activity 2: Write Your Conclusion</h3>
+    <div class="pb"><h5>📌 Useful phrases:</h5><div class="ptags"><span class="pt">Overall, the findings indicate that</span><span class="pt">The most significant issue is</span><span class="pt">It is recommended that</span><span class="pt">because the data shows that</span><span class="pt">In conclusion,</span></div></div>
+    <textarea class="wa" id="m7wa" placeholder="Write your conclusion and recommendations here (refer to Charts from Module 5)..." oninput="document.getElementById('m7wc').textContent=wc(this.value)"></textarea>
+    <div class="wcd">Words: <span id="m7wc">0</span></div>
+    <button class="btn bp" onclick="chkM7()" style="margin-top:10px">Check My Conclusion</button>
+    <div id="m7fb" style="margin-top:8px"></div>
+  </div>${nav(6,8)}`;
+  _jSel=new Set();
+}
+function selJ(n){const el=document.getElementById('j'+n);if(!el)return;_jSel.has(n)?(_jSel.delete(n),el.style.background='#F9F9F9',el.style.outline=''):(_jSel.add(n),el.style.background='#E8F5EE',el.style.outline='2px solid #4A9660');if(_jSel.has(1)&&_jSel.has(2)){fb('jfb','🎉 Correct! Notice how each recommendation is followed by "because" or "as the data reveals" — this connects the action to the evidence.',true);S.done.add(7);updP();}}
+function chkM7(){const text=document.getElementById('m7wa')?.value||'';const checks=[{l:'Contains "Overall" or "In conclusion"',p:/overall|in conclusion/i.test(text)},{l:'Contains a recommendation phrase',p:/it is recommended/i.test(text)},{l:'Justifies with "because" or "as the data"',p:/because|as the data|since the findings/i.test(text)},{l:'References chart data or percentages',p:/chart|%|percent/i.test(text)},{l:'Appropriate length (40+ words)',p:wc(text)>=40}];const passed=checks.filter(c=>c.p).length;const m7fb=document.getElementById('m7fb');if(!m7fb)return;m7fb.innerHTML=`<div style="background:#F4F4F4;border-radius:10px;padding:12px"><p style="font-size:.86rem;font-weight:700;margin-bottom:8px">Paragraph Checklist:</p>${checks.map(c=>`<div class="cli ${c.p?'p':'f'}"><span>${c.p?'✅':'❌'}</span>${c.l}</div>`).join('')}<p style="margin-top:8px;font-size:.82rem;font-weight:700;color:${passed>=4?'#1A5030':'#B03030'}">${passed}/5 checks passed ${passed>=4?'— Great work! ✨':'— Revise and try again.'}</p></div>`;if(passed>=4){S.done.add(7);updP();}}
+
+// ===== MODULE 8 =====
+const VOCAB=[{w:'analyze',d:'To examine something in detail to understand it'},{w:'evaluate',d:'To assess the quality or value of something'},{w:'determine',d:'To find out or establish something through investigation'},{w:'indicate',d:'To show or point to something'},{w:'recommend',d:'To suggest that something should be done'},{w:'compare',d:'To examine similarities and differences between two things'}];
+let _vw=null,_vd=null,_vm=new Set();
+function buildM8(){
+  const vbq=[
+    {s:'The report aims to ___ the main causes of customer dissatisfaction.',o:['write','investigate','give','say'],c:1},
+    {s:'The data ___ that workload is the most significant issue.',o:['tells','speaks','indicates','mentions'],c:2},
+    {s:'It is recommended that the company ___ flexible working hours.',o:['do','make','introduce','put'],c:2},
+    {s:'This report will ___ the two training programs from 2023 and 2024.',o:['look at','compare','check','see'],c:1}
+  ];
+  const shDefs=[...VOCAB].sort(()=>Math.random()-.5);
+  document.getElementById('mod-8').innerHTML=`
+  <div class="mh"><h2>📚 Module 8: Report-Writing Vocabulary</h2><p>Master the key verbs, phrases, and formal language of professional reports.</p></div>
+  <div class="card"><h3>Core Report-Writing Verbs</h3>
+    <div class="vg3">${['analyze','summarize','identify','interpret','evaluate','determine','investigate','compare','indicate','clarify','recommend','address'].map((v,i)=>{const bg=['#FFF0E6','#EBF3FA','#E8F5EE','#FFF6E0'][i%4],tc=['#8E2A0E','#1E4E7A','#1A5E30','#7A5200'][i%4];return `<div style="border-radius:8px;padding:8px;text-align:center;font-size:.85rem;font-weight:700;background:${bg};color:${tc}">${v}</div>`;}).join('')}</div>
+  </div>
+  <div class="card"><h3>🎯 Activity 1: Vocabulary Matching</h3>
+    <p style="font-size:.85rem;color:#555;margin-bottom:10px">Click a word, then click its matching definition.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+      <div>${VOCAB.map((v,i)=>`<div class="vword" id="vw${i}" onclick="selVW(${i})">${v.w}</div>`).join('')}</div>
+      <div>${shDefs.map((v,i)=>`<div class="vdef" id="vd${i}" onclick="selVD(${i})" data-w="${v.w}">${v.d}</div>`).join('')}</div>
+    </div>
+    <div id="vmfb" style="margin-top:8px"></div>
+  </div>
+  <div class="card"><h3>🎯 Activity 2: Choose the Correct Verb</h3>
+    <div class="act">${vbq.map((item,i)=>`<div style="margin-bottom:13px"><p style="font-weight:700;font-size:.85rem;margin-bottom:7px">${i+1}. "${item.s}"</p>${item.o.map((o,j)=>`<div class="opt" id="vb${i}${j}" onclick="selQ('vb',${i},${j},${item.o.length})">${o}</div>`).join('')}</div>`).join('')}</div>
+    <button class="btn bp" onclick="chkVerbs(${JSON.stringify(vbq.map(q=>q.c))})">Check Answers</button>
+    <div id="vbfb" style="margin-top:8px"></div>
+  </div>${nav(7,9)}`;
+  _vw=null;_vd=null;_vm=new Set();window._qsel=window._qsel||{};
+}
+function selVW(i){if(_vm.has('w'+i))return;document.querySelectorAll('.vword').forEach(e=>{if(!e.classList.contains('m'))e.className='vword';});document.getElementById('vw'+i)?.classList.add('s');_vw=i;tryVM();}
+function selVD(i){if(document.getElementById('vd'+i)?.classList.contains('m'))return;document.querySelectorAll('.vdef').forEach(e=>{if(!e.classList.contains('m'))e.className='vdef';});document.getElementById('vd'+i)?.classList.add('s');_vd=i;tryVM();}
+function tryVM(){if(_vw===null||_vd===null)return;const we=document.getElementById('vw'+_vw),de=document.getElementById('vd'+_vd);if(VOCAB[_vw].w===de?.dataset.w){we?.classList.replace('s','m');de?.classList.replace('s','m');_vm.add('w'+_vw);if(_vm.size===VOCAB.length){fb('vmfb','🎉 All matched! You know all the core report-writing verbs.',true);S.done.add(8);updP();}}else{setTimeout(()=>{we?.classList.remove('s');de?.classList.remove('s');},700);}[_vw,_vd]=[null,null];}
+function chkVerbs(corrects){let sc=0;corrects.forEach((c,i)=>{for(let j=0;j<4;j++){const el=document.getElementById(`vb${i}${j}`);if(el)el.className='opt'+(j===c?' c':window._qsel?.['vb'+i]===j&&j!==c?' w':'');}if(window._qsel?.['vb'+i]===c)sc++;});if(sc===corrects.length)fb('vbfb','🎉 All correct! You can choose the right academic verb.',true);else fb('vbfb',`Score: ${sc}/${corrects.length}. Review highlighted answers.`,false);}
+
+// ===== MODULE 9 =====
+const EXSC=[
+  {id:'A',lbl:'Scenario A – Employee Satisfaction (Informative)',text:'The Human Resources Manager at Gulf Petroleum has commissioned an informative report to analyze employee satisfaction levels across all departments. A survey of 200 employees was conducted in January 2025.',c1:{title:'Chart 1: Sources of Employee Dissatisfaction (n=200)',type:'bar',data:[{l:'Workload',v:38,c:'#C8562E'},{l:'Comms',v:25,c:'#4E7FAC'},{l:'Mgmt',v:20,c:'#4A9660'},{l:'Salary',v:12,c:'#DDA020'},{l:'Other',v:5,c:'#8E5ABE'}]},c2:{title:'Chart 2: Employee Preferred Solutions',type:'pie',data:[{l:'Flexible Hours',v:35,c:'#C8562E'},{l:'Better Comms',v:25,c:'#4E7FAC'},{l:'Training',v:20,c:'#4A9660'},{l:'Pay Review',v:12,c:'#DDA020'},{l:'Other',v:8,c:'#8E5ABE'}]}},
+  {id:'B',lbl:'Scenario B – Student Absenteeism (Problem-Solving)',text:'The Academic Dean at City Business College has requested a problem-solving report to address rising student absenteeism over the past two semesters. Data was collected from attendance records and a student survey of 300 participants.',c1:{title:'Chart 1: Absenteeism Rates by Semester (%)',type:'bar',data:[{l:'Sem1 2023',v:8,c:'#4E7FAC'},{l:'Sem2 2023',v:12,c:'#4A9660'},{l:'Sem1 2024',v:18,c:'#DDA020'},{l:'Sem2 2024',v:27,c:'#C8562E'}]},c2:{title:'Chart 2: Main Reasons for Student Absence',type:'pie',data:[{l:'Personal Issues',v:35,c:'#C8562E'},{l:'Transport',v:30,c:'#4E7FAC'},{l:'Health',v:20,c:'#4A9660'},{l:'Motivation',v:15,c:'#DDA020'}]}},
+  {id:'C',lbl:'Scenario C – Training Programs (Evaluation)',text:'The Training Manager at Masdar City has requested an evaluation report to compare two professional development programs (Alpha and Beta) offered to engineers in 2024. Feedback was gathered from 180 participants.',c1:{title:'Chart 1: "Very Satisfied" Ratings by Program (%)',type:'bar',data:[{l:'Alpha',v:42,c:'#C8562E'},{l:'Beta',v:28,c:'#4E7FAC'},{l:'Alpha Satisfied',v:35,c:'#4A9660'},{l:'Beta Satisfied',v:30,c:'#DDA020'}]},c2:{title:'Chart 2: Skills Improvement Reported (%)',type:'pie',data:[{l:'Strong-Alpha',v:45,c:'#C8562E'},{l:'Mod-Alpha',v:25,c:'#DDA020'},{l:'Strong-Beta',v:18,c:'#4E7FAC'},{l:'Mod-Beta',v:12,c:'#4A9660'}]}}
+];
+const EXCK=[
+  {id:'t0',l:'Title included (first line, 5+ characters)',fn:t=>t.trim().split('\n')[0]?.trim().length>5},
+  {id:'t1',l:'Introduction names report type (informative/problem-solving/evaluation)',fn:t=>/informative|problem.solving|evaluation/i.test(t)},
+  {id:'t2',l:'States who requested the report',fn:t=>/requested by|commissioned by|manager|director|dean/i.test(t)},
+  {id:'t3',l:'States the purpose of the report',fn:t=>/purpose.*is to|aims to|in order to/i.test(t)},
+  {id:'t4',l:'References Chart 1',fn:t=>/chart\s*1|chart1/i.test(t)},
+  {id:'t5',l:'References Chart 2',fn:t=>/chart\s*2|chart2/i.test(t)},
+  {id:'t6',l:'Includes specific percentages (%)',fn:t=>/\d+\s*%/.test(t)},
+  {id:'t7',l:'Contains recommendations',fn:t=>/it is recommended|recommend/i.test(t)},
+  {id:'t8',l:'Justifies recommendations with data',fn:t=>/because|since.*data|as the data|findings show/i.test(t)},
+  {id:'t9',l:'Approaching 250 words (200+ written)',fn:t=>wc(t)>=200}
+];
+let _exSc='A';
+function buildM9(){
+  document.getElementById('mod-9').innerHTML=`
+  <div class="mh"><h2>🏆 Module 9: Full Exam Practice</h2><p>Simulate the real exam: scenario + two charts + 75-minute timer + 250-word report.</p></div>
+  <div id="exsetup" class="card"><h3>Exam Instructions</h3>
+    <div class="ib a"><ul style="padding-left:16px;font-size:.84rem;line-height:2"><li>Receive a <strong>scenario</strong> and <strong>two charts</strong></li><li>Write: <strong>Title → Introduction → Findings & Analysis → Conclusion & Recommendations</strong></li><li>Target: <strong>~250 words</strong> | Time: <strong>75 minutes</strong></li><li>Reference <strong>both charts</strong> with specific percentages</li><li>All recommendations must be <strong>justified by data</strong></li></ul></div>
+    <p style="font-size:.85rem;font-weight:700;margin:12px 0 7px;color:#555">Select a scenario:</p>
+    <div style="display:flex;flex-direction:column;gap:6px">${EXSC.map(s=>`<div id="exscb${s.id}" onclick="selExSc('${s.id}')" style="cursor:pointer;background:${s.id==='A'?'#FFF0E6':'#fff'};border:2px solid ${s.id==='A'?'#C8562E':'#E0D0C0'};border-radius:10px;padding:10px 14px;font-size:.85rem;transition:all .2s;display:flex;align-items:center;gap:8px"><input type="radio" name="exsc" value="${s.id}" ${s.id==='A'?'checked':''} style="accent-color:#C8562E">${s.lbl}</div>`).join('')}</div>
+    <button class="btn bp" onclick="startExam()" style="margin-top:14px;font-size:.93rem;padding:11px 24px">🚀 Start Exam</button>
+  </div>
+  <div id="exactive" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:13px;padding:12px 17px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:13px">
+      <div><p style="font-size:.73rem;color:#888;font-weight:700;margin-bottom:2px">TIME REMAINING</p><div class="tmr" id="tmrdsp">75:00</div></div>
+      <div style="text-align:center"><p style="font-size:.73rem;color:#888">WORDS</p><div style="font-size:1.55rem;font-weight:800;color:#C8562E" id="exwcbig">0</div><p style="font-size:.72rem;color:#888">/ target 250</p></div>
+      <button class="btn bo" onclick="endExam()" style="font-size:.77rem;padding:5px 10px">End Exam</button>
+    </div>
+    <div class="card"><h3>📋 Scenario</h3><div class="scn" id="exscn"></div></div>
+    <div class="card"><h3>📊 Charts</h3><div class="c2g"><div class="cw" id="exc1"></div><div class="cw" id="exc2"></div></div></div>
+    <div class="card">
+      <h3>✏️ Your Report</h3>
+      <p style="font-size:.81rem;color:#666;margin-bottom:7px">Include: <strong>Title | Introduction | Findings & Analysis | Conclusion & Recommendations</strong></p>
+      <textarea class="wa" id="exta" style="min-height:275px" placeholder="Write your complete report here..." oninput="updExam()"></textarea>
+      <div class="wcd">Words: <span id="exwc">0</span></div>
+    </div>
+    <div class="card"><h3>✅ Live Report Checklist</h3><p style="font-size:.81rem;color:#555;margin-bottom:8px">Updates as you write:</p><div id="exchk"></div></div>
+  </div>
+  <div id="exres" style="display:none"></div>
+  <div class="nr"><button class="btn bo" onclick="goM(8)">← Previous</button><div></div></div>`;
+  initChk();
+}
+function selExSc(id){_exSc=id;EXSC.forEach(s=>{const el=document.getElementById('exscb'+s.id);if(!el)return;el.style.borderColor=s.id===id?'#C8562E':'#E0D0C0';el.style.background=s.id===id?'#FFF0E6':'#fff';const rb=el.querySelector('input');if(rb)rb.checked=s.id===id;});}
+function startExam(){const sc=EXSC.find(s=>s.id===_exSc);if(!sc)return;S.exam.sc=sc;S.exam.secs=4500;document.getElementById('exsetup').style.display='none';document.getElementById('exactive').style.display='block';document.getElementById('exscn').innerHTML=`<h4>📋 Your Task</h4><p>${sc.text}</p><p style="margin-top:7px;font-weight:700;color:#A03820;font-size:.83rem">Write a complete report. Target ~250 words. Reference both charts explicitly.</p>`;document.getElementById('exc1').innerHTML=drawChart(sc.c1);document.getElementById('exc2').innerHTML=drawChart(sc.c2);updTmr();S.exam.iv=setInterval(()=>{S.exam.secs--;updTmr();if(S.exam.secs<=0)endExam();},1000);initChk();}
+function drawChart(ch){
+  if(ch.type==='bar'){const mx=Math.max(...ch.data.map(d=>d.v));const bw=Math.floor(300/ch.data.length)-7;const H=125;const bars=ch.data.map((d,i)=>{const h=Math.round(d.v/(mx*1.2)*H);const x=36+i*(bw+7);const y=22+H-h;const l=d.l.length>9?d.l.slice(0,9)+'…':d.l;return `<rect x="${x}" y="${y}" width="${bw}" height="${h}" fill="${d.c}" rx="3"/><text x="${x+bw/2}" y="${y-3}" text-anchor="middle" font-size="8" font-weight="bold" fill="${d.c}">${d.v}%</text><text x="${x+bw/2}" y="${22+H+13}" text-anchor="middle" font-size="7.5" fill="#555">${l}</text>`;}).join('');return `<p style="font-size:.76rem;font-weight:700;color:#333;margin-bottom:6px">${ch.title}</p><svg viewBox="0 0 350 ${22+H+22}" style="width:100%"><line x1="33" y1="${22+H}" x2="345" y2="${22+H}" stroke="#CCC"/>${bars}</svg>`;}
+  else{const tot=ch.data.reduce((s,d)=>s+d.v,0);let ang=-90;const cx=75,cy=80,r=60;const slices=ch.data.map(d=>{const a=d.v/tot*360;const r1=ang*Math.PI/180,r2=(ang+a)*Math.PI/180;const x1=cx+r*Math.cos(r1),y1=cy+r*Math.sin(r1),x2=cx+r*Math.cos(r2),y2=cy+r*Math.sin(r2);const lrg=a>180?1:0;const mx2=cx+r*.6*Math.cos((ang+a/2)*Math.PI/180),my=cy+r*.6*Math.sin((ang+a/2)*Math.PI/180);ang+=a;return `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${lrg},1 ${x2},${y2} Z" fill="${d.c}"/><text x="${mx2}" y="${my}" text-anchor="middle" font-size="8" font-weight="bold" fill="white">${d.v}%</text>`;}).join('');const leg=ch.data.map((d,i)=>`<rect x="150" y="${16+i*18}" width="10" height="10" fill="${d.c}" rx="2"/><text x="164" y="${25+i*18}" font-size="8.5" fill="#333">${d.l} (${d.v}%)</text>`).join('');return `<p style="font-size:.76rem;font-weight:700;color:#333;margin-bottom:6px">${ch.title}</p><svg viewBox="0 0 350 165" style="width:100%">${slices}${leg}</svg>`;}
+}
+function updTmr(){const s=S.exam.secs,m=Math.floor(s/60),sec=s%60;const el=document.getElementById('tmrdsp');if(!el)return;el.textContent=`${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;el.className='tmr'+(s<300?' w':'');}
+function initChk(){const c=document.getElementById('exchk');if(!c)return;c.innerHTML=EXCK.map(item=>`<div class="cli n" id="cl${item.id}"><span>⬜</span> ${item.l}</div>`).join('');}
+function updExam(){const text=document.getElementById('exta')?.value||'';const count=wc(text);['exwc','exwcbig'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=count;});EXCK.forEach(item=>{const el=document.getElementById('cl'+item.id);if(!el)return;const pass=item.fn(text);el.className='cli '+(pass?'p':'n');el.firstChild.textContent=pass?'✅':'⬜';});}
+function endExam(){if(S.exam.iv){clearInterval(S.exam.iv);S.exam.iv=null;}const text=document.getElementById('exta')?.value||'';const count=wc(text);const passed=EXCK.filter(item=>item.fn(text)).length;document.getElementById('exactive').style.display='none';const res=document.getElementById('exres');if(!res)return;res.style.display='block';const grade=passed>=9?'Excellent 🌟':passed>=7?'Good 👍':passed>=5?'Developing 📈':'Needs Work 🔧';const gc=passed>=9?'#4A9660':passed>=7?'#4E7FAC':passed>=5?'#DDA020':'#B03030';const tips=[!EXCK[0].fn(text)&&'Make sure your title is on its own line at the top.',(!EXCK[4].fn(text)||!EXCK[5].fn(text))&&'Reference both Chart 1 and Chart 2 explicitly in your findings.',!EXCK[7].fn(text)&&'Include at least one recommendation using "It is recommended that..."',!EXCK[8].fn(text)&&'Justify recommendations with data ("because the findings show that...").',count<200&&`Expand your report — you wrote ${count} words. Aim for 250.`].filter(Boolean);res.innerHTML=`<div class="card"><div style="text-align:center;margin-bottom:16px"><div style="font-size:2.4rem">🏆</div><h3 style="font-size:1.25rem;color:${gc};margin:6px 0">${grade}</h3><p style="font-size:.85rem;color:#555">Checklist: ${passed}/${EXCK.length} | Words: ${count}</p></div>${EXCK.map(item=>`<div class="cli ${item.fn(text)?'p':'f'}"><span>${item.fn(text)?'✅':'❌'}</span>${item.l}</div>`).join('')}${tips.length?`<div class="ib" style="margin-top:12px"><strong>Tips to improve:</strong><ul style="padding-left:16px;margin-top:6px;font-size:.83rem;line-height:1.85">${tips.map(t=>`<li>${t}</li>`).join('')}</ul></div>`:'<div class="ib g" style="margin-top:12px">All key elements present! Focus on making your language even more formal and precise.</div>'}<div style="display:flex;gap:8px;margin-top:13px"><button class="btn bp" onclick="resetExam()">Try Another Scenario</button><button class="btn bo" onclick="saveP()">💾 Save Progress</button></div></div>`;S.done.add(9);updP();}
+function resetExam(){document.getElementById('exres').style.display='none';document.getElementById('exsetup').style.display='block';const ta=document.getElementById('exta');if(ta)ta.value='';initChk();}
+
+// ===== SAVE / LOAD =====
+function saveP(){const data={done:[...S.done],m7:document.getElementById('m7wa')?.value||'',exam:document.getElementById('exta')?.value||'',ts:new Date().toISOString()};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download='report_writing_progress.json';a.click();}
+function loadP(){const inp=document.createElement('input');inp.type='file';inp.accept='.json';inp.onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(d.done){S.done=new Set(d.done.map(Number));updP();}if(d.m7){const el=document.getElementById('m7wa');if(el)el.value=d.m7;}if(d.exam){const el=document.getElementById('exta');if(el)el.value=d.exam;}alert('Progress loaded!');}catch{alert('Error loading file.');}};r.readAsText(f);};inp.click();}
+
+// ===== MODULE 10 =====
+function buildM10(){
+const RPT=[
+{id:0,lbl:'🔍 Informative',color:'#4E7FAC',bg:'#EBF3FA',
+sc:'Employee satisfaction survey at Gulf Petroleum (200 employees, January 2025). Requested by the HR Manager.',
+ti:'An Informative Report on Employee Satisfaction Levels at Gulf Petroleum, Requested by the HR Manager, January 2025',
+in_:'This is an informative report, requested by the Human Resources Manager at Gulf Petroleum. The purpose of this report is to analyze employee satisfaction levels across all departments to help improve workplace conditions. It includes an overview of survey results and chart data, with each section providing insights and data that support the main findings and conclusions.',
+fi:'A survey was conducted among 200 employees to investigate the main causes of dissatisfaction in the workplace (See Chart 1). According to Chart 1, workload was identified as the most significant issue, reported by 38% of respondents. On the other hand, communication problems accounted for a further 25% of responses, indicating that interpersonal challenges are also a major concern. Additionally, Chart 2 reveals that flexible working hours were the most preferred solution, with 35% of employees selecting this option (See Chart 2). Notably, 25% of staff also cited improved communication strategies as a priority, suggesting this issue requires urgent attention.',
+co:'Overall, the findings indicate that workload and communication are the two most pressing challenges at Gulf Petroleum. The most significant issue is excessive workload, which is negatively affecting morale and productivity. It is recommended that management introduce flexible working arrangements because the data shows that 35% of employees selected this as their preferred solution (See Chart 2), suggesting it would significantly improve overall satisfaction. Furthermore, it is recommended that the company implement communication training for all team leaders, as 25% of respondents identified poor communication as a key source of dissatisfaction, indicating a clear need for structured intervention.'},
+{id:1,lbl:'⚠️ Problem-Solving',color:'#C8562E',bg:'#FFF0E6',
+sc:'Rising student absenteeism at City Business College. Requested by the Academic Dean. Data from attendance records and a survey of 300 students.',
+ti:'A Problem-Solving Report to Address Rising Student Absenteeism at City Business College, Semester 2, 2024',
+in_:'This is a problem-solving report, requested by the Academic Dean at City Business College. The purpose of this report is to address the issue of rising student absenteeism over the past two semesters and help reduce absence rates across all departments. It includes an overview of attendance data and student survey findings, with each section providing insights and data that support the main findings and conclusions.',
+fi:'A review of attendance records and a student survey of 300 participants were conducted to investigate the causes and extent of absenteeism at City Business College (See Chart 1). According to Chart 1, absenteeism has risen sharply from 8% in Semester 1, 2023 to 27% in Semester 2, 2024, indicating a serious and worsening trend. On the other hand, this sharp increase suggests that multiple contributing factors have emerged over time. Additionally, Chart 2 reveals that personal issues were the most commonly cited reason for absence, reported by 35% of students (See Chart 2). Notably, transport difficulties accounted for a further 30% of absences, suggesting that logistical challenges are also a major barrier to attendance.',
+co:'Overall, the data indicates that absenteeism at City Business College has reached a critical level, driven primarily by personal and transport-related difficulties. The most significant issue is the rapid rise in absence rates, which threatens student academic performance. It is recommended that the college introduce a student counselling service because 35% of students cited personal issues as their main reason for absence (See Chart 2), suggesting that targeted pastoral support would address the root cause. Furthermore, it is recommended that the college partner with local transport providers to offer subsidized travel, as 30% of students identified transport as a key barrier, indicating that improved accessibility would meaningfully reduce absence rates.'},
+{id:2,lbl:'⚖️ Evaluation',color:'#4A9660',bg:'#E8F5EE',
+sc:'Comparison of two training programs (Alpha and Beta) for engineers at Masdar City, 2024. Requested by the Training Manager. 180 participants surveyed.',
+ti:'An Evaluation Report on the Effectiveness of Two Workplace Training Programs (Alpha and Beta) for Engineers at Masdar City, 2024',
+in_:'This is an evaluation report, requested by the Training Manager at Masdar City. The purpose of this report is to compare two professional development programs, Alpha and Beta, offered to engineers in 2024, in order to help select the most effective option for continued staff development. It includes an overview of participant satisfaction ratings and skills improvement data, with each section providing insights and data that support the main findings and conclusions.',
+fi:'Feedback was gathered from 180 engineer participants to compare the effectiveness of Program Alpha and Program Beta (See Chart 1). According to Chart 1, Program Alpha received a "very satisfied" rating from 42% of participants, compared to only 28% for Program Beta, indicating that Alpha was considerably more effective in meeting expectations. On the other hand, both programs received moderate satisfaction from a significant proportion of participants, suggesting room for improvement in each. Additionally, Chart 2 reveals that 45% of Alpha participants reported strong skills improvement, compared to only 18% for Beta (See Chart 2). Notably, Beta\'s combined improvement ratings were significantly lower, suggesting that its training methodology is less effective at producing measurable outcomes.',
+co:'Overall, the findings clearly indicate that Program Alpha outperformed Program Beta across all key measures of effectiveness. The most significant finding is the substantial difference in skills improvement, with Alpha producing strong results in 45% of participants versus only 18% for Beta (See Chart 2). It is recommended that Masdar City continue using Program Alpha as the primary training option because the data demonstrates consistently higher satisfaction and skills development outcomes across all participant groups. Furthermore, it is recommended that Program Beta be reviewed and redesigned, as its lower performance ratings indicate that its current structure does not adequately meet the professional development needs of the engineering team.'}
+];
+const CK=[
+['🏷️ Title',['#C8562E','#FFF0E6'],['Correct report type stated (Informative/Problem-Solving/Evaluation)','Clear purpose described','Relevant details included (Who, Where, When)','First word and all important words capitalized','Approximately 10–20 words long']],
+['📝 Introduction',['#4E7FAC','#EBF3FA'],['States the type of report','Names who requested the report','States the purpose of the report','Summarizes what the report includes','2–3 sentences, approximately 50 words']],
+['📊 Findings & Analysis',['#4A9660','#E8F5EE'],['S1: Introduces survey/data purpose and participants','S2: First main finding with explicit Chart 1 reference','S3: Key detail or insight from Chart 1','S4: Second key finding with explicit Chart 2 reference','S5: Insight from Chart 2 — numbers AND meaning']],
+['✅ Conclusion & Recs',['#DDA020','#FFF6E0'],['Brief summary of overall findings','Identifies the most significant issue','Makes at least two clear recommendations','Justifies Recommendation 1 with data from findings','Justifies Recommendation 2 with data from findings']]
+];
+document.getElementById('mod-10').innerHTML=`
+<div class="mh"><h2>📖 Module 10: Final Review</h2><p>Printable checklists and complete sample reports for all three report types.</p></div>
+<div class="card"><h3>✅ Quick Reference: Section Checklists</h3>
+<p style="font-size:.83rem;color:#555;margin-bottom:11px">🖨️ Click <strong>Print Section</strong> (bottom-right) to save this page as a study handout.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+${CK.map(([t,[c,bg],items])=>`<div style="background:${bg};border-radius:12px;padding:13px;border:2px solid ${c}"><h4 style="color:${c};margin-bottom:8px;font-size:.87rem">${t}</h4>${items.map(it=>`<div style="display:flex;gap:5px;align-items:flex-start;font-size:.80rem;line-height:1.5;margin-bottom:6px"><span style="color:${c};flex-shrink:0;margin-top:1px">✓</span><span>${it}</span></div>`).join('')}</div>`).join('')}
+</div></div>
+<div class="card"><h3>📄 Complete Sample Reports</h3>
+<p style="font-size:.83rem;color:#555;margin-bottom:11px">Click a report type to read a full ~250-word model answer. Study the structure and language carefully.</p>
+<div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px">
+${RPT.map((r,i)=>`<button id="rt${i}" onclick="sr10(${i})" style="border:2px solid ${r.color};border-radius:20px;padding:6px 14px;cursor:pointer;font-size:.8rem;font-weight:700;background:${i===0?r.color:''};color:${i===0?'#fff':r.color};transition:all .2s">${r.lbl}</button>`).join('')}
+</div>
+${RPT.map((r,i)=>`<div id="rc${i}" style="display:${i===0?'block':'none'}">
+<div style="background:#F5F5F5;border-radius:9px;padding:11px;margin-bottom:10px;font-size:.81rem;color:#555;border:1px solid #E0D0C0"><strong>Scenario:</strong> ${r.sc}</div>
+<div style="background:${r.bg};border-radius:12px;padding:17px;border:2px solid ${r.color}">
+<div style="margin-bottom:12px"><span style="background:${r.color};color:#fff;font-size:.71rem;font-weight:700;padding:3px 9px;border-radius:10px;display:inline-block;margin-bottom:6px">TITLE</span><p style="font-weight:700;font-size:.87rem;line-height:1.6">${r.ti}</p></div>
+<hr style="border:none;border-top:1px dashed ${r.color};margin:10px 0">
+<div style="margin-bottom:12px"><span style="background:${r.color};color:#fff;font-size:.71rem;font-weight:700;padding:3px 9px;border-radius:10px;display:inline-block;margin-bottom:6px">INTRODUCTION</span><p style="font-size:.83rem;line-height:1.85">${r.in_}</p></div>
+<hr style="border:none;border-top:1px dashed ${r.color};margin:10px 0">
+<div style="margin-bottom:12px"><span style="background:${r.color};color:#fff;font-size:.71rem;font-weight:700;padding:3px 9px;border-radius:10px;display:inline-block;margin-bottom:6px">FINDINGS & ANALYSIS</span><p style="font-size:.83rem;line-height:1.85">${r.fi}</p></div>
+<hr style="border:none;border-top:1px dashed ${r.color};margin:10px 0">
+<div><span style="background:${r.color};color:#fff;font-size:.71rem;font-weight:700;padding:3px 9px;border-radius:10px;display:inline-block;margin-bottom:6px">CONCLUSION & RECOMMENDATIONS</span><p style="font-size:.83rem;line-height:1.85">${r.co}</p></div>
+</div></div>`).join('')}
+</div>
+<div class="card" style="background:linear-gradient(135deg,#FFF3E8,#FFFAF0);border:2px solid #E0C898">
+<h3>🎯 Exam Day Reminders</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px">
+${[['📋 Report ≠ Essay','Use data and evidence — not personal opinions or feelings.'],['🏷️ Title Formula','Report Type + Purpose + Details (10–20 words, capitalized correctly)'],['📝 Intro (~50 words)','Type → Who requested it → Purpose → Summary of sections'],['📊 Findings (5 sentences)','S1: Survey → S2–S3: Chart 1 data → S4–S5: Chart 2 data'],['🔢 Use exact figures','State the percentage AND explain what it means for the workplace.'],['✅ Justify every recommendation','Use "…because the data shows that X%, which suggests…"']].map(([t,d])=>`<div style="background:#fff;border-radius:10px;padding:11px;border:1px solid #E0D0C0"><p style="font-weight:700;font-size:.83rem;color:#C8562E;margin-bottom:4px">${t}</p><p style="font-size:.79rem;color:#444;line-height:1.5">${d}</p></div>`).join('')}
+</div></div>
+${nav(9,null)}`;
+window.sr10=function(i){RPT.forEach((_,j)=>{const t=document.getElementById('rt'+j),c=document.getElementById('rc'+j);if(t){t.style.background=j===i?RPT[j].color:'';t.style.color=j===i?'#fff':RPT[j].color;}if(c)c.style.display=j===i?'block':'none';});};
+}
+// ===== INIT =====
+function init(){buildNav();buildM1();buildM2();buildM3();buildM4();buildM5();buildM6();buildM7();buildM8();buildM9();buildM10();updP();}
+init();
+</script>
+</body>
+</html>
